@@ -1,0 +1,32 @@
+model: ModelID# or Model name
+  identifier: org.bluetooth.meshmodel.generic_onoff_server
+  name: Generic OnOff Server
+  description: |-
+    This is a generic onoff server, root model.
+  states:
+    - name: Generic OnOff
+      description: 'This defines on-off state'
+      values:
+        - value: '0'
+          description: Off
+        - value: '1'
+          description: On
+  messages:
+    - message: Generic OnOff Get
+        description: Return the current GenericOnOff state value
+    - message: Generic OnOff Set
+        - value: '0'
+          description: Set to off
+        - value: '1'
+          description: Set to on
+    - message: Generic OnOff Set Unacknowledged
+        - value: '0'
+          description: Set to off
+        - value: '1'
+          description: Set to on
+    - message: Generic OnOffStatus
+        description: Send out the status of the Generic OnOff Server
+        - value: '0'
+          description: status is off
+        - value: '1'
+          description: status is on
