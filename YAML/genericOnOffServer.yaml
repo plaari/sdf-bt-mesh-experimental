@@ -6,7 +6,8 @@ model:
   states:
     - name: Generic OnOff
       description: |-
-        This defines on-off state
+        This defines on-off state, boolean
+      type: uint8
       values:
         - value: '0'
           description: Off
@@ -16,46 +17,66 @@ model:
     - message: Generic OnOff Get
       description: |- 
         Return the current GenericOnOff state value
+      fields:
+        - field: Response
+          direction: out
+          outdata: Generic OnOffStatus
     - message: Generic OnOff Set
+      description: |-
+        Set OnOff status, send acknowledgement
       fields:
         - field: OnOff
+          direction: in
           type: uint8
           size: 1
           description: |-
             The target value of the Generic OnOff state: 0 = off, 1 = on
         - field: TID
+          direction: in
           type: uint8
           size: 1
           description: |-
             Transaction identifier
         - field: Transition Time
+          direction: in
           type: uint8
           size: 1
           description: |-
             Transition Time, see section 3.1.3 (Mesh Model specification)
         - field: Delay
+          direction: in
           type: uint8
           size: 1
           description: |-
             The target value of the Generic OnOff state: 0 = off, 1 = on
+        - field: Response
+          direction: out
+          outdata: Generic OnOffStatus
+          
     - message: Generic OnOff Set Unacknowledged
+      description: |-
+        Set OnOff status, do not acknowledge
       fields:
         - field: OnOff
+          direction: in
           type: uint8
           size: 1
           description: |-
             The target value of the Generic OnOff state: 0 = off, 1 = on
         - field: TID
+          direction: in
           type: uint8
           size: 1
           description: |-
             Transaction identifier
         - field: Transition Time
+          direction: in
           type: uint8
           size: 1
           description: |-
             Transition Time, see section 3.1.3 (Mesh Model specification)
         - field: Delay
+          direction: in
           type: uint8
           size: 1
           description: |-
@@ -64,16 +85,19 @@ model:
       description: Send out the status of the Generic OnOff Server
       fields:
         - field: Present OnOff
+          direction: out
           type: uint8
           size: 1
           description: |-
             The present value of the Generic OnOff state      
         - field: Target OnOff
+          direction: out
           type: uint8
           size: 1
           description: |-
             The target value of the Generic OnOff state (optional)
         - field: Remaining Time
+          direction: out
           type: uint8
           size: 1
           description: |-
